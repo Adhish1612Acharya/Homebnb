@@ -1,0 +1,127 @@
+<% layout("/layouts/boilerplate") %>
+<style>
+  #filters{
+    height: 5rem;
+    width:100%;
+    margin-bottom: 2rem;
+    padding-top:2rem ;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  #filter{
+   opacity: 0.8;
+   margin: 1rem;
+  }
+
+  #filter:hover{
+   cursor: pointer;
+   opacity:1 ;
+  }
+
+  .tax-info{
+    color:black;
+    display: none;
+  }
+
+  .tax-toggle{
+    border: 2px solid black;
+    width: max-content;
+    height: 3rem;
+    padding:0.5rem;
+    border-radius: 10px;
+    margin: 1rem;
+  }
+
+  a{
+    text-decoration: none;
+    color: black;
+  }
+</style>
+<div id="filters">
+  <div id="filter">
+    <a href="/listings/filter/Trending">
+      <i class="fa-solid fa-fire"></i>&nbsp;<span>Trending</span>
+    </a>
+  </div>
+  <div id="filter">
+    <a href="/listings/filter/Rooms">
+      <i class="fa-solid fa-bed"></i>&nbsp;<span>Rooms</span>
+    </a>
+  </div>
+  <div id="filter">
+    <a href="/listings/filter/Iconic-cities">
+      <i class="fa-solid fa-city"></i>&nbsp;<span>Iconic cities</span>
+    </a> 
+  </div>
+  <div id="filter">
+    <a href="/listings/filter/Mountains">
+      <i class="fa-solid fa-mountain"></i>&nbsp;Mountains<span></span>
+    </a> 
+  </div>
+  <div id="filter">
+    <a href="/listings/filter/Castle">
+      <i class="fa-regular fa-chess-rook"></i>&nbsp;Castle<span></span>
+    </a> 
+  </div>
+  <div id="filter">
+    <a href="/listings/filter/Amazing-pools">
+      <i class="fa-solid fa-person-swimming"></i>&nbsp;<span>Amazing pools</span>
+    </a> 
+  </div>
+  <div id="filter">
+    <a href="/listings/filter/Camping">
+      <i class="fa-solid fa-campground"></i>&nbsp;Camping<span></span>
+    </a> 
+  </div>
+  <div id="filter">
+    <a href="/listings/filter/Farms">
+      <i class="fa-solid fa-wheat-awn"></i>&nbsp;<span>Farms</span>
+    </a> 
+  </div>
+<div class="tax-toggle">
+  <div class="form-check-reverse form-switch">
+    <label class="form-check-label-reverse" 
+    for="flexSwitchCheckDefault">
+    Display total after taxes   
+  </label>
+    <input class="form-check-input" type="checkbox" 
+    role="switch" id="flexSwitchCheckDefault">
+  </div>
+</div>
+</div>
+<body>
+    <div class="row row-cols-lg-3 row-cols-md-2 row row-cols-sm-1">
+      <% for(listing of listings){%>
+      <a class ="listing-info" href="/listings/<%= listing._id %>">
+        <div class="listing-card cols" style="width: 20rem;">
+          <img src=<%= listing.image.url %> class="card-img-top" alt="Listing image">
+          <!-- <div class="card-img-overlay"></div> -->
+          <div class="card-body">
+            <h5 class="card-title"><%= listing.title %> </h5>
+            <p class="card-text">
+              &#x20B9;<%=  listing.price.toLocaleString("en-IN")%>/night
+              <i class="tax-info"> &nbsp; &nbsp; + 18% GST</i>
+            </p>
+            
+          </div>
+        </div>
+      </a>
+      <%}%>
+    </div> 
+</body>
+<script>
+  let taxToggle=document.getElementById("flexSwitchCheckDefault");
+  taxToggle.addEventListener("click",()=>{
+    let taxinfo=document.getElementsByClassName("tax-info");
+    for(info of taxinfo){
+      if(info.style.display!="inline"){
+        info.style.display="inline";
+      }else{
+        info.style.display="none";
+      }
+    }
+  })
+</script>

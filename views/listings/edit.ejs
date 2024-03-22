@@ -1,0 +1,77 @@
+<% layout("./layouts/boilerplate.ejs") %>
+<body>
+    <div class="row">
+        <div class="col-8 offset-3">
+            <h3>Edit your Listing</h3>
+            <form method="POST" 
+            class="needs-validation" 
+            novalidate 
+            action="/listings/<%= listing._id %>?_method=PUT"
+            enctype="multipart/form-data"
+            >
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" name="listing[title]" class="form-control" value="<%= listing.title %>" required>
+                    <div class="invalid-feedback">Enter a valid Title</div>  
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textArea name="listing[description]" class="form-control" required><%= listing.description %></textArea>
+                    <div class="invalid-feedback">Enter a valid Description</div>  
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Original Image</label>
+                    <img src="<%= originalImageUrl %>" alt="Original image">
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image</label>
+                    <input type="file" name="listing[image]" class="form-control" >
+                    <div class="invalid-feedback">Enter a valid image URL</div>  
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-md-4">
+                        <label for="price" class="form-label">Price</label>
+                        <input  name="listing[price]" class="form-control" value="<%= listing.price %>" required>
+                        <div class="invalid-feedback">Enter a valid Price</div>  
+                    </div>
+                      <div class="mb-3 col-md-8">
+                                <label for="country" class="form-label">Country</label>
+                                <input type="text" name="listing[country]" class="form-control" value="<%= listing.country %>" required>
+                                <div class="invalid-feedback">Enter a valid Country name</div>  
+                            </div>
+                </div>
+                <div class="mb-3">
+                    <label for="state" class="form-label">State</label>
+                    <input type="text" value="<%= listing.state %>" name="listing[state]" class="form-control" placeholder="Karnataka" required>
+                    <div class="invalid-feedback">Enter a valid State</div>
+                </div>
+              <div class="mb-3">
+                        <label for="location" class="form-label">Location</label>
+                        <input type="text" name="listing[location]" class="form-control" value="<%= listing.location %>" required>
+                        <div class="invalid-feedback">Enter a valid Location</div>  
+                    </div>
+                    <div class="mb-3">
+                        <label for="filter" class="form-label">Filter</label>
+                        <select class="form-select" id="inputGroupSelect01" name="listing[filter]" required>
+                                <option value="<%=listing.filter %>" selected><%=listing.filter %></option>
+                                <option disabled>---Choose options below to change filter ---</option>
+                                <option value="Trending">Trending</option>
+                                <option value="Rooms">Rooms</option>
+                                <option value="Iconic-cities">Iconic cities</option>
+                                <option value="Mountains">Mountains</option>
+                                <option value="Amazing-pools">Amazing pools</option>
+                                <option value="Castle">Castle</option>
+                                <option value="Camping">Camping</option>
+                                <option value="Farms">Farms</option>
+                        </select>
+                        <div class="invalid-feedback">Add a filter</div>
+                    </div>  
+            <br><br>
+            <button class="btn btn-dark add-btn">Edit</button>
+            <br><br>
+            </form>
+        </div>
+    </div>
+   
+</body>
+</html>
