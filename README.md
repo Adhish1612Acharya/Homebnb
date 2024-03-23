@@ -2,6 +2,6 @@
 
 https://homebnb-8sjw.onrender.com
 
-#Full stack  
+#A Full stack project...  
 
 It is an application built using MongoDB , Express and Node
