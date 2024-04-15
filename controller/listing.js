@@ -78,7 +78,7 @@ module.exports.destroy=async (req,res)=>{
 
 module.exports.search=async (req,res)=>{
     let {searchdata}=req.body;
-    let listings=await Listing.find({$or:[{location : searchdata.toUpperCase()},
+    let listings=await Listing.findMany({$or:[{location : searchdata.toUpperCase()},
                                      {country : searchdata.toUpperCase()},
                                     {state:searchdata.toUpperCase()}]
                                     });
